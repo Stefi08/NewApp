@@ -1,0 +1,34 @@
+<!--<a routerLink="/member-list">Member List</a> <br>-->
+
+
+<!-- <div class="topnav">
+  <a class="active" href="#home">User Application</a>
+  <a class="active" class="user-disabled"> List of User</a>
+  <div class="login-container">
+    <div class="dropdown" *ngIf="user$ |async as user">
+      <button class="dropbtn" >Welcome {{user.username}}
+
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="#">Edit</a>
+        <a href="#" (click)="logout()" type="button" routerLinkActive="active">LogOut</a>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div   *ngFor="let user of users" class="card" style="width: 18rem; background-color:lightgreen ;  " >
+  <div class="card-body">
+    <h5 class="card-title">{{ user.userName }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted"></h6>
+    <p class="card-text"></p>
+    <button [routerLink]="['/member-details', user.id]"  style="position: absolute; bottom: 0; left: 0; background-color: lightgrey;" >Details</button>
+
+  </div>
+</div>
+
+
+
+
+

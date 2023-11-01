@@ -1,0 +1,57 @@
+<!-- <div class="topnav">
+  <a class="active" >User Application</a>
+  <div class="login-container">
+    <form  #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Username"
+        name="username"
+
+        [(ngModel)]="loginForm.username"
+      />
+      &nbsp;
+      <input
+      class="form-control"
+      type="password"
+      placeholder="Password"
+      name="password"
+      [(ngModel)]="loginForm.password"
+
+    />
+    &nbsp;
+      <button (click)="login(loginForm)" type="submit" routerLinkActive="active">Login</button>
+    </form>
+  </div>
+</div> -->
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <div class="d-flex align-items-center">
+      <a class="navbar-brand">User Application</a>
+
+      <a *ngIf="(this.accountService.currentUser$ | async)" routerLink="/member-list" class="navbar-brand ml-auto">List of users</a>
+    </div>
+
+    <form *ngIf="!(this.accountService.currentUser$ | async)" class="d-flex ml-auto" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+      <input name="username" [(ngModel)]="loginForm.username" type="text" class="form-control mx-2" placeholder="Username">
+      <input name="password" [(ngModel)]="loginForm.password" type="password" class="form-control mx-2" placeholder="Password">
+      <button class="btn btn-outline-success" type="submit">Login</button>
+    </form>
+
+    <div class="d-flex">
+      <div class="row">
+        <div class="col">
+          <div ngbDropdown class="d-inline-block">
+            <button *ngIf="(this.accountService.currentUser$ | async)" type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+              Welcome {{ (this.accountService.currentUser$ | async)?.username }}
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem routerLink="/edit-profile">Edit</button>
+              <button ngbDropdownItem (click)="logout()">Logout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
